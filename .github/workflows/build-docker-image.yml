@@ -9,7 +9,8 @@ on:
       - 'package.json'
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
+  # 添加下面这一行，即可开启 Actions 页面中的 "Run workflow" 按钮
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -37,6 +38,7 @@ jobs:
         with:
           context: .
           push: true
+          # 建议初次测试时可以先只保留 linux/amd64，构建速度会快很多
           platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/${{ github.repository_owner }}/huowin:2026
